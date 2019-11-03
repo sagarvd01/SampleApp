@@ -6,7 +6,7 @@
     ]
   },
   "hosting": {
-    "public": "dist/SampleApp",
+    "public": "dist/browser/",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,7 +15,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "function": "ssr"
       }
     ]
   }

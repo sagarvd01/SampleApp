@@ -10,12 +10,16 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-
       - run: npm install
       - run: npm install --save-dev firebase-tools
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run build
-      - run: './node_modules/.bin/firebase deploy --only hosting --token=$FirebaseToken'
+      - run: npm run build:ssr
+      - run: cd ./functions && npm install && cd ../ && cp -a ./dist/. ./functions/dist/
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: './node_modules/.bin/firebase deploy --token=$FirebaseToken'
