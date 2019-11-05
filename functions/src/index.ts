@@ -1,7 +1,8 @@
 // import * as functions from 'firebase-functions';
-import * as functions from 'firebase-functions';
-const universal = require(`${process.cwd()}/dist/server`).app;
+const functions = require('firebase-functions');
+const universal = require(`${process.cwd()}/dist/server.js`);
 exports.ssr = functions.https.onRequest(universal)
+
 
 
 // // Start writing Firebase Functions
